@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Username:</h3>
+
+<p><%= @user.username %></p>
+
+<p>
+  Has made <%= pluralize(@user.ratings.count, 'rating') %>, 
+  with average rating <%= @user.average_rating %>
+</p>
+
+<p>
+  <strong>ratings</strong>
+  <ul>
+    <% @user.ratings.each do |rating| %>
+      <li>
+        <%= rating %>
+        <% if @user == current_user %>
+          <%= link_to "Delete", rating,
+          data: {
+            "turbo_method": :delete
+          } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Member of:</strong>
+  <ul>
+    <% @user.beer_clubs.each do |club| %>
+      <li><%= link_to club.name, club %></li>
+    <% end %>
+  </ul>
+</p>
+
+<div>
+  <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <% end %>
+
+  <%= link_to "Back to users", users_path %>
+
+  <% if @user == current_user %>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
+</div>

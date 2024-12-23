@@ -82,3 +82,5 @@ group :test do
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem 'bcrypt', '~> 3.1.7'

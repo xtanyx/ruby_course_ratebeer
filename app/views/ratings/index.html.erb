@@ -3,8 +3,7 @@
 <p>Number of ratings: <%= @ratings.count %> </p>
 <ul>
   <% @ratings.each do |rating| %>
-    <li> <%= render rating %> <%= button_to 'delete', rating_path(rating.id), method: :delete, 
-    form: { data: {'turbo-confirm': 'Are you sure you want to delete this rating?'} } %> </li>
+    <li> <%= render rating %></li>
   <% end %>
 </ul>
 

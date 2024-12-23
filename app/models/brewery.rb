@@ -1,10 +1,21 @@
 class Brewery < ApplicationRecord
   include RatingAverage
-  
+
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
-  
+  validate :year_is_less_than_or_equal_to_current_year
+  validates :name, presence: true
+  validates :year, numericality: {
+    greater_than_or_equal_to: 1040,
+    only_integer: true
+  }
+
+  def year_is_less_than_or_equal_to_current_year
+    if year > Date.today.year
+      errors.add(:year, "can't be greater than current year")
+    end
+  end
 
   def print_report
     puts name
@@ -18,7 +29,6 @@ class Brewery < ApplicationRecord
   end
 
   def to_s
-    return "#{self.name}"
+    name.to_s
   end
-
 end

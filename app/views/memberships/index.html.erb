@@ -1,0 +1,8 @@
+<h2>List of memberships</h2>
+
+<p>Number of memberships: <%= @memberships.count %> </p>
+<ul>
+  <% @memberships.each do |membership| %>
+    <li> <%= render membership %></li>
+  <% end %>
+</ul>
