@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: %i[show edit update destroy]
-  before_action :authenticate, only: [:destroy]
+  before_action :ensure_that_signed_in, except: [:index, :show]
 
   # GET /breweries or /breweries.json
   def index
@@ -70,13 +70,13 @@ class BreweriesController < ApplicationController
     params.require(:brewery).permit(:name, :year)
   end
 
-  def authenticate
-    admin_accounts = { "pekka" => "beer", "arto" => "foobar", "matti" => "ittam", "vilma" => "kangas", "123456789" => "987654321" }
+  # def authenticate
+  #   admin_accounts = { "pekka" => "beer", "arto" => "foobar", "matti" => "ittam", "vilma" => "kangas", "123456789" => "987654321" }
 
-    authenticate_or_request_with_http_basic do |username, password|
-      return true if (admin_accounts.key?(username) && admin_accounts[username] == password) || (username == "admin" && password == "secret")
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     return true if (admin_accounts.key?(username) && admin_accounts[username] == password) || (username == "admin" && password == "secret")
 
-      raise "Wrong username or password" # username/password was wrong
-    end
-  end
+  #     raise "Wrong username or password" # username/password was wrong
+  #   end
+  # end
 end

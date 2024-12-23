@@ -6,12 +6,13 @@ describe "Beer" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
   
   before :each do
+    FactoryBot.create :user
     sign_in(username: "Pekka", password: "Foobar1")
     visit beers_path
   end
 
   it "is created successfully when the name is correct" do
-    click_link "New beer"
+    click_link "New Beer"
     fill_in('beer_name', with: 'testbeer')
     select('Lager', from: 'beer[style]')
     select('Koff', from: 'beer[brewery_id]')
@@ -25,7 +26,7 @@ describe "Beer" do
   end
 
   it "is not created and appropriate error message is displayed if beer name is not valid" do
-    click_link "New beer"
+    click_link "New Beer"
     fill_in('beer_name', with: '')
     select('Lager', from: 'beer[style]')
     select('Koff', from: 'beer[brewery_id]')
