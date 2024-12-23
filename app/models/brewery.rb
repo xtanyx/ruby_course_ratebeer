@@ -12,9 +12,9 @@ class Brewery < ApplicationRecord
   }
 
   def year_is_less_than_or_equal_to_current_year
-    if year > Date.today.year
-      errors.add(:year, "can't be greater than current year")
-    end
+    return unless year > Date.today.year
+
+    errors.add(:year, "can't be greater than current year")
   end
 
   def print_report

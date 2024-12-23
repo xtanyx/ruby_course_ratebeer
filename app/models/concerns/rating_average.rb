@@ -6,7 +6,7 @@ module RatingAverage
   def average_rating
     scores = ratings.map(&:score)
     return 0 if scores.empty?
-    
+
     sum = scores.sum
 
     (sum.to_f / ratings.count).truncate(2)

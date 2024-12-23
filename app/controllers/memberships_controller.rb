@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
 
   def new
     @membership = Membership.new
-    @beer_clubs = BeerClub.all.filter {|club| not current_user.beer_clubs.include? club}
+    @beer_clubs = BeerClub.all.filter { |club| !current_user.beer_clubs.include? club }
   end
 
   def create
@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
     if @membership.save
       redirect_to memberships_path
     else
-      @beer_clubs = BeerClub.all.filter {|club| current_user.beer_clubs.include? club}
+      @beer_clubs = BeerClub.all.filter { |club| current_user.beer_clubs.include? club }
       render :new, status: :unprocessable_entity
     end
   end
