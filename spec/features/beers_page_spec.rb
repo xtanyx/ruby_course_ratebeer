@@ -4,6 +4,7 @@ include Helpers
 
 describe "Beer" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+  let!(:style) { FactoryBot.create :style }
   
   before :each do
     FactoryBot.create :user
@@ -14,7 +15,7 @@ describe "Beer" do
   it "is created successfully when the name is correct" do
     click_link "New Beer"
     fill_in('beer_name', with: 'testbeer')
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('Koff', from: 'beer[brewery_id]')
     click_button "Create Beer"
 
@@ -28,7 +29,7 @@ describe "Beer" do
   it "is not created and appropriate error message is displayed if beer name is not valid" do
     click_link "New Beer"
     fill_in('beer_name', with: '')
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('Koff', from: 'beer[brewery_id]')
     click_button "Create Beer"
 
