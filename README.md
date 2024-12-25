@@ -10,6 +10,8 @@ If you want to access the exercises for a particular week, use ```git log``` to 
 
 Then use ```git checkout {hash}```, where ```{hash}``` is the **hash** of the commit, to change the application contents to a particular commit.
 
+### Note: You'll have to rollback the migrations accordingly!
+
 ## Week_number ## Commit_label
 - ```week-1``` ## ```submit week-1```
 - ```week-2``` ## ```submit week_2```
